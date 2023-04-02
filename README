@@ -9,5 +9,5 @@ WHY USERLAND CALCULATIONS?
 ===========================
 
 Kernel does not really support floating-point calculations. There is kernel_fpu_begin
-and kernel_fpu_end, but they aren't unstable and slow. So, best solution is to move
+and kernel_fpu_end, but they are unstable and slow. So, best solution is to move
 all math to the userland!
