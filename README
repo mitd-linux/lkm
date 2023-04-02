@@ -4,3 +4,10 @@ MITFW LOADABLE KERNEL MODULE
 
 Linux loadable kernel module for mitfw.
 Forwards all inbound packets on pre-routing stage to netfilter queue 21.
+
+WHY USERLAND CALCULATIONS?
+===========================
+
+Kernel does not really support floating-point calculations. There is kernel_fpu_begin
+and kernel_fpu_end, but they aren't unstable and slow. So, best solution is to move
+all math to the userland!
