@@ -3,3 +3,4 @@ MITFW LOADABLE KERNEL MODULE
 ============================
 
 Linux loadable kernel module for mitfw.
+Forwards all inbound packets on pre-routing stage to netfilter queue 21.
