@@ -35,7 +35,7 @@ static int __init lkm_init(void)
     __nfho_in.hooknum = NF_INET_PRE_ROUTING;
     __nfho_in.pf = PF_INET;
     __nfho_in.priority = NF_IP_PRI_FIRST;
-    nf_register_net_hook(&__nfho_in);
+    nf_register_net_hook(&init_net, &__nfho_in);
 
     return 0;
 }
@@ -43,7 +43,7 @@ static int __init lkm_init(void)
 static void __exit lkm_exit(void)
 {
     pr_info("mitfw exit");
-    nf_unregister_net_hook(&__nfho_in);
+    nf_unregister_net_hook(&init_net, &__nfho_in);
 }
 
 module_init(lkm_init);
