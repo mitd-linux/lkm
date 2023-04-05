@@ -12,15 +12,12 @@
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Dmitry Sidorov");
 
-// magic constant::
-#define NF_QUEUE_NUM 21
-
 // netfilter hook
 unsigned int hook_in(void *priv, struct sk_buff *skb,
                         const struct nf_hook_state *state)
 {
     // send packet to queue
-    return NF_QUEUE_NR(NF_QUEUE_NUM);
+    return NF_QUEUE_NR(21);
 }
 
 // hook ops for input
@@ -32,7 +29,7 @@ static int __init lkm_init(void)
     
     // nf hooks
     __nfho_in.hook = hook_in;
-    __nfho_in.hooknum = NF_INET_PRE_ROUTING;
+    __nfho_in.hooknum = NF_INET_LOCAL_IN;
     __nfho_in.pf = PF_INET;
     __nfho_in.priority = NF_IP_PRI_FIRST;
     nf_register_net_hook(&init_net, &__nfho_in);
